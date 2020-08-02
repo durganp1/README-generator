@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 
 
 const promptQuestions = () => {
+    readMeData = [];
     return inquirer.prompt([
         {
             type: 'input',
@@ -56,17 +57,24 @@ const promptQuestions = () => {
         },
         {
             type: 'confirm',
-            
-        }
+            name: 'confirmTests',
+            message: 'Would you like to add a test section?',
+            default: true
+        },
         {
             type: 'input',
             name: 'tests',
-            message: 'Please list test instructions'
+            message: 'Please list test instructions',
+            when: ({ confirmTests }) => confirmTests
         }
-    ]); 
+    ])
+    .then(projectData => {
+        readMeData.push(projectData);
+        console.log(projectData);
+    }) 
 };
 
-promptTitle();
+promptQuestions();
 
 
 // function to write README file
