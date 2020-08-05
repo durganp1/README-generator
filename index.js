@@ -1,9 +1,12 @@
 
 const inquirer = require('inquirer');
+const fs = require('fs');
+const path = require('path');
+const generateMarkdown = require("./Develop/utils/generateMarkdown");
 
 
 const promptQuestions = () => {
-    readMeData = [];
+    //readMeData = [];
     return inquirer.prompt([
         {
             type: 'input',
@@ -19,16 +22,14 @@ const promptQuestions = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmInstallation',
-            message: 'Would you like to include installation instructions?',
-            default: true
+            type: 'input',
+            name: 'description',
+            message: 'Please give a description of your project?'
         },
         {
             type: 'input',
             name: 'installation',
-            message: 'Provide installation instructions for the Project:',
-            when: ({ confirmInstallation }) => confirmInstallation
+            message: 'Provide installation instructions for the Project:'
         },
         {
             type: 'input',
@@ -44,46 +45,54 @@ const promptQuestions = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmContributions',
-            message: 'Would you like to add contribution guidelines for your project?',
-            default: true
-        },
-        {
             type: 'input',
             name: 'contributions',
-            message: 'Please add contribute guidelines for your project.',
-            when: ({ confirmContributions }) => confirmContributions
-        },
-        {
-            type: 'confirm',
-            name: 'confirmTests',
-            message: 'Would you like to add a test section?',
-            default: true
+            message: 'What does a user need to know about contributing to your project?'
         },
         {
             type: 'input',
             name: 'tests',
-            message: 'Please list test instructions',
-            when: ({ confirmTests }) => confirmTests
+            message: 'Please list test instructions'
+        },
+        {
+            type: 'checkbox',
+            name: 'license',
+            message: 'Choose a license for your application.',
+            choices: ['MIT', 'ISC', 'GNU', 'None']
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your GitHub user name?'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?'
         }
+
     ])
-    .then(projectData => {
-        readMeData.push(projectData);
-        console.log(projectData);
-    }) 
+    // .then(projectData => {
+    //     readMeData.push(projectData);
+    //     console.log(projectData);
+    // }) 
 };
 
-promptQuestions();
+//promptQuestions();
 
 
 // function to write README file
 function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
 // function to initialize program
 function init() {
-
+    promptQuestions()
+    .then((inquirerResponses) => {
+        console.log("Creating README File");
+        writeToFile("README.md", generateMarkdown({inquirerResponses}));
+    })
 }
 
 // function call to initialize program
