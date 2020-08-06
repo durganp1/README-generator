@@ -1,50 +1,52 @@
+
+
 function licenseBadge(license) {
   if (license !== "None") {
-    return `[Github license](https://img.shields.io/badge/license-${data.license}-blue)`
+    return `![Github license](https://img.shields.io/badge/license-${license}-blue.svg)`;
+  } else {
+    return ".";
   }
 }
 
-const licenseType = function(choice) {
-  let licenseChoices = [{
-    type: 'MIT',
-    link: 'https://opensource.org/licenses/MIT'
-  },
-  {
-    type: 'ISC',
-    link: 'https://opensource.org/licenses/ISC'
+function licenseType(license) {
     
-  },
-  {
-    type: 'GNU',
-    link: 'https://opensource.org/licenses/lgpl-3.0.html'
-  },
-  
-  ]}
+    if (license === 'MIT') {
+      return "[MIT License Link](https://opensource.org/licenses/MIT)";
+    } else if (license === 'ISC') {
+      return "[ISC License Link](https://opensource.org/licenses/ISC)";
+    } else if (license === 'GNU') {
+      return "[GNU License Link](https://opensource.org/licenses/lgpl-3.0.html)";
+    } else {
+      return ".";
+    }
+};
 
 
 // function to generate markdown for README
 function generateMarkdown(data) {
+  console.log(data);
   return `# ${data.name}
+  ${licenseBadge(data.license)}
+
+  ${licenseType(data.license)}
+  
 
   ## Description
 
   ${data.description}
 
-  ## License
-
-
 
   ## Table of Contents
 
-  * [Installation] (#installation)
+  * [Installation](#installation)
 
-  * [Usage] (#usage)
+  * [Usage](#usage)
 
-  * [Contributions] (#contributions)
+  * [Contributions](#contributions)
 
-  * [Tests] (#tests)
+  * [Tests](#tests)
 
-  * [Questions] (#questions)
+  * [Questions](#questions)
 
   ## Installation
 
@@ -68,9 +70,9 @@ function generateMarkdown(data) {
 
   ## Questions
 
-  If you have questions about the project or an open issue, you can contact me at ${data.email}.  You can see more of my repo's at [${data.github}](https://github.com${data.github}/).
+  If you have questions about the project or an open issue, you can contact me at ${data.email}.  You can see more of my repo's at https://github.com/${data.github}/.
 
-
+  
 
   `;
 }

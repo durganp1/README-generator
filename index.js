@@ -5,9 +5,7 @@ const path = require('path');
 const generateMarkdown = require("./Develop/utils/generateMarkdown");
 
 
-const promptQuestions = () => {
-    //readMeData = [];
-    return inquirer.prompt([
+const promptQuestions = [
         {
             type: 'input',
             name: 'name',
@@ -52,10 +50,11 @@ const promptQuestions = () => {
         {
             type: 'input',
             name: 'tests',
-            message: 'Please list test instructions'
+            message: 'Please list test instructions',
+            default: 'npm test'
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'license',
             message: 'Choose a license for your application.',
             choices: ['MIT', 'ISC', 'GNU', 'None']
@@ -71,14 +70,7 @@ const promptQuestions = () => {
             message: 'What is your email address?'
         }
 
-    ])
-    // .then(projectData => {
-    //     readMeData.push(projectData);
-    //     console.log(projectData);
-    // }) 
-};
-
-//promptQuestions();
+    ];
 
 
 // function to write README file
@@ -88,10 +80,11 @@ function writeToFile(fileName, data) {
 
 // function to initialize program
 function init() {
-    promptQuestions()
+    inquirer.prompt(promptQuestions)
     .then((inquirerResponses) => {
-        console.log("Creating README File");
-        writeToFile("README.md", generateMarkdown({inquirerResponses}));
+        console.log("Creating README...");
+        console.log(inquirerResponses);
+        writeToFile("README.md", generateMarkdown({...inquirerResponses}));
     })
 }
 
