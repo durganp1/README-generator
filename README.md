@@ -25,7 +25,14 @@
 
   [Installation Video](https://drive.google.com/file/d/1DO7Vlz3BE9p9nMthN0YG3hiFtjTl6spi/view?usp=sharing)
 
-  1. Navigate to https://github.com/durganp1/README-generator.  2. Download Zip and save to a file on your computer.  3. Open that file in your text editor.  4. Select index.js and open in terminal.  5. type npm i inquirer on command line.  6. type node index on command line.  7. Follow prompts.  8. Save the file to you corresponding project.
+  1. Navigate to https://github.com/durganp1/README-generator.  
+  2. Download Zip and save to a file on your computer.  
+  3. Open that file in your text editor.  
+  4. Select index.js and open in terminal.  
+  5. type npm i inquirer on command line.  
+  6. type node index on command line.  
+  7. Follow prompts.  
+  8. Save the file to you corresponding project.
 
   ## Usage
 
