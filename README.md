@@ -31,6 +31,8 @@
 
   1. Navigate to github repo that has the README Generator, see link at bottom or web address under installation instructions.  2. Follow installation instructions, see screen shot to show what final product will look like.
   
+  <img width="1536" alt="Screen Shot 2020-08-06 at 10 01 26 AM" src="https://user-images.githubusercontent.com/65720461/89547899-f4959c80-d7cb-11ea-810f-42277ad07169.png">
+  
   ## Contributions
 
   Contributions are welcome.  Please follow the link in the questions section.
